@@ -1,7 +1,7 @@
 // compile and run with: tsc && node ./dist/index.js (prob only works in bash)
 import express from "express";
 import cors from "cors";
-import eventRouter from "./routes/events";
+import eventRouter from "./routes/events.js";
 console.log("Hello world");
 
 const app = express();
