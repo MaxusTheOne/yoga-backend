@@ -2,10 +2,12 @@ CREATE DATABASE yogaDB;
 
 use yogaDB;
 
+DROP TABLE events;
 
 CREATE TABLE events (
      id INT AUTO_INCREMENT PRIMARY KEY,
      title VARCHAR(256) NOT NULL,
+     description varchar(256),
      start DATETIME NOT NULL,
      end DATETIME NOT NULL
 );
@@ -21,4 +23,6 @@ CREATE PROCEDURE getEvents()
         SELECT * FROM events;
     end;
 
+CREATE
 CALL getEvents();
+
