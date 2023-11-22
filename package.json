@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "compile": "tsc",
+    "comp": "tsc && node ./dist/main.js",
     "start": "node ./dist/main.js",
     "dev": "node --watch main.js"
   },
