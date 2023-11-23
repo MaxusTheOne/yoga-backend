@@ -1,10 +1,10 @@
-import { Router } from "express";
-import { dbconfig } from "../database.js";
+import { Router } from 'express';
+import { dbconfig } from '../database.js';
 const eventRouter = Router();
-eventRouter.get("/search", async (request, response) => {
+eventRouter.get('/search', async (request, response) => {
     const page = request.query.page || 1;
     const eventsPerPage = request.query.eventsPerPage || 501;
-    const sql = `CALL getPage(?, ?)`;
+    const sql = `CALL getEventPage(?, ?)`;
     const values = [page, eventsPerPage];
     console.log(values);
     try {
@@ -15,11 +15,11 @@ eventRouter.get("/search", async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
-eventRouter.get("/", async (request, response) => {
+eventRouter.get('/', async (request, response) => {
     const page = request.query.page || 1;
     const eventsPerPage = request.query.eventsPerPage || 10;
-    const search = request.query.titleSearch || "";
-    const sql = `CALL getPage(?, ?, ?)`;
+    const search = request.query.titleSearch || '';
+    const sql = `CALL getEventPage(?, ?, ?)`;
     const values = [page, eventsPerPage, search];
     console.log(values);
     try {
@@ -30,9 +30,9 @@ eventRouter.get("/", async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
-eventRouter.post("/", async (request, response) => {
+eventRouter.post('/', async (request, response) => {
     const title = request.body.title;
-    const description = request.body.description || "";
+    const description = request.body.description || '';
     const start = request.body.start;
     const end = request.body.end;
     const sql = `CALL postEvent(?, ?, ?, ?)`;
@@ -52,8 +52,8 @@ eventRouter.post("/", async (request, response) => {
         }
     };
     if (compareDates(end, start)) {
-        console.log("date error");
-        response.status(500).json({ error: "start date is after end date" });
+        console.log('date error');
+        response.status(500).json({ error: 'start date is after end date' });
     }
     else {
         try {

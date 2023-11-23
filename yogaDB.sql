@@ -4,12 +4,23 @@ use yogaDB;
 
 DROP TABLE events;
 
+-- Creating tables
 CREATE TABLE events (
      id INT AUTO_INCREMENT PRIMARY KEY,
      title VARCHAR(256) NOT NULL,
      description varchar(256),
      start DATETIME NOT NULL,
      end DATETIME NOT NULL
+);
+CREATE TABLE users (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     age INT NOT NULL,
+     firstName varchar(256) NOT NULL,
+     lastName varchar(256) NOT NULL,
+     memberStatus bool,
+     activityLevel varchar(256),
+     phone numeric,
+     email varchar(256)
 );
 
 -- Inserting data into the artists table
@@ -34,6 +45,21 @@ INSERT INTO events (title, start, end) VALUES
     ('Winter Wonderland', '2023-12-25 16:00:00', '2023-12-25 22:00:00'),
     ('New Year''s Eve Party', '2023-12-31 21:00:00', '2024-01-01 02:00:00');
 
+-- Inserting users into the users table
+INSERT INTO users (age, firstName, lastName, memberStatus, activityLevel, phone, email) VALUES
+    (25, 'John', 'Doe', true, 'High', 1234567890, 'john.doe@example.com'),
+    (30, 'Jane', 'Smith', false, 'Medium', 9876543210, 'jane.smith@example.com'),
+    (22, 'Alice', 'Johnson', true, 'Low', 5551234567, 'alice.johnson@example.com'),
+    (28, 'Bob', 'Williams', true, 'High', 1112223333, 'bob.williams@example.com'),
+    (35, 'Eva', 'Anderson', false, 'Medium', 9998887777, 'eva.anderson@example.com'),
+    (40, 'Charlie', 'Brown', true, 'Low', 4445556666, 'charlie.brown@example.com'),
+    (26, 'Grace', 'Miller', false, 'High', 7778889999, 'grace.miller@example.com'),
+    (32, 'David', 'Taylor', true, 'Medium', 3334445555, 'david.taylor@example.com'),
+    (27, 'Sophie', 'Clark', false, 'Low', 6667778888, 'sophie.clark@example.com'),
+    (33, 'Michael', 'Jones', true, 'High', 2223334444, 'michael.jones@example.com'),
+    (29, 'Olivia', 'Davis', true, 'Medium', 8889990000, 'olivia.davis@example.com'),
+    (31, 'Henry', 'Moore', false, 'Low', 1239876543, 'henry.moore@example.com');
+
 CREATE PROCEDURE getEvents()
     BEGIN
         SELECT * FROM events;
@@ -47,8 +73,8 @@ CREATE PROCEDURE getEventsByTitle(variable varchar(256))
     END;
 CALL getEventByTitle("nt 1");
 
-DROP PROCEDURE getPage;
-CREATE PROCEDURE getPage(var_page int, eventPerPage int, var_title varchar(256))
+DROP PROCEDURE getEventPage;
+CREATE PROCEDURE getEventPage(var_page int, eventPerPage int, var_title varchar(256))
     BEGIN
         DECLARE setOffset INT;
 
@@ -59,7 +85,7 @@ CREATE PROCEDURE getPage(var_page int, eventPerPage int, var_title varchar(256))
             LIMIT eventPerPage OFFSET setOffset;
         COMMIT;
     end;
-CALL getPage(1, 5,  "t");
+CALL getEventPage(1, 5,  "t");
 
 CREATE PROCEDURE postEvent(title varchar(256), description varchar(256), start DATETIME, end DATETIME)
     BEGIN
@@ -68,4 +94,33 @@ CREATE PROCEDURE postEvent(title varchar(256), description varchar(256), start D
     end;
 CALL postEvent("Cool event", "no", "2023-04-23 02:00:00","2023-04-23 06:00:00" );
 
+CREATE PROCEDURE getUsers()
+BEGIN
+    SELECT * FROM users;
+end;
+CALL getUsers();
 
+CREATE PROCEDURE getUserPageFirstNameSearch(var_page int, eventPerPage int, var_name varchar(256))
+BEGIN
+    DECLARE setOffset INT;
+    SET setOffset = (var_page - 1) * eventPerPage;
+    START TRANSACTION;
+    SELECT * FROM users
+    WHERE firstName LIKE CONCAT("%",var_name,"%")
+    LIMIT eventPerPage OFFSET setOffset;
+    COMMIT;
+end;
+CALL getUserPageFirstNameSearch(1, 5, "a");
+
+CREATE PROCEDURE getAllMembers(var_page int, eventPerPage int)
+BEGIN
+    DECLARE setOffset INT;
+
+    SET setOffset = (var_page - 1) * eventPerPage;
+    START TRANSACTION;
+    SELECT * FROM users
+    WHERE memberStatus = 1
+    LIMIT eventPerPage OFFSET setOffset;
+    COMMIT;
+end;
+CALL getAllMembers(1, 9)

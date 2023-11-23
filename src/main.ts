@@ -1,17 +1,19 @@
 // compile and run with: tsc && node ./dist/index.js (prob only works in bash)
-import express from "express";
-import cors from "cors";
-import eventRouter from "./routes/events.js";
-console.log("Hello world");
+import express from 'express'
+import cors from 'cors'
+import eventRouter from './routes/events.js'
+import userRouter from './routes/users.js'
+console.log('Hello world')
 
-const app = express();
-const port = process.env.PORT || 3000;
+const app = express()
+const port = process.env.PORT || 3000
 
-app.use(express.json());
-app.use(cors());
+app.use(express.json())
+app.use(cors())
 
-app.use("/events", eventRouter)
+app.use('/events', eventRouter)
+app.use('/users', userRouter)
 
 app.listen(port, () => {
-  console.log(`app running on http://localhost:${port}`);
-});
+    console.log(`app running on http://localhost:${port}`)
+})
