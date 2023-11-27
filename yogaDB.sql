@@ -71,7 +71,7 @@ CREATE PROCEDURE getEventsByTitle(variable varchar(256))
         SELECT * FROM events
         WHERE title LIKE CONCAT("%",variable,"%");
     END;
-CALL getEventByTitle("nt 1");
+CALL getEventsByTitle("nt 1");
 
 DROP PROCEDURE getEventPage;
 CREATE PROCEDURE getEventPage(var_page int, eventPerPage int, var_title varchar(256))
