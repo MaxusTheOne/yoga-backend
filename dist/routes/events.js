@@ -9,7 +9,7 @@ eventRouter.get('/search', async (request, response) => {
     console.log(values);
     try {
         const [results] = await dbconfig.execute(sql, values);
-        response.status(200).json(results);
+        response.status(200).json(results[0]);
     }
     catch (error) {
         response.status(500).json({ error: error.message });
@@ -24,7 +24,7 @@ eventRouter.get('/', async (request, response) => {
     console.log(values);
     try {
         const [results] = await dbconfig.execute(sql, values);
-        response.status(200).json(results);
+        response.status(200).json(results[0]);
     }
     catch (error) {
         response.status(500).json({ error: error.message });

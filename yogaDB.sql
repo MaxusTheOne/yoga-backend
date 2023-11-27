@@ -124,3 +124,33 @@ BEGIN
     COMMIT;
 end;
 CALL getAllMembers(1, 9)
+
+CREATE PROCEDURE promoteToMember(var_id int)
+BEGIN
+    UPDATE users
+        SET memberStatus= 1
+    WHERE id = var_id;
+end;
+CALL promoteToMember(2);
+
+CREATE PROCEDURE demoteToGuest(var_id int)
+BEGIN
+    UPDATE users
+    SET memberStatus= 0
+    WHERE id = var_id;
+end;
+
+CREATE TABLE users_events(
+    user_id INT NOT NULL,
+    event_id INT NOT NULL,
+    PRIMARY KEY (user_id, event_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (event_id) REFERENCES events(id)
+);
+
+CREATE PROCEDURE associateUserEvent(user_id int, event_id int)
+BEGIN
+    INSERT INTO users_events (user_id, event_id)
+        VALUES (user_id, event_id);
+end;
+CALL associateUserEvent(3,5)
