@@ -3,15 +3,6 @@ import { dbconfig } from '../database.js'
 
 const mediaRouter = Router()
 
-// mediaRouter.get('/', async (request, response) => {
-//     const sql = `CALL getMedia()`
-//     console.log(request.body)
-
-//     const [results] = await dbconfig.execute(sql)
-
-//     response.json(results)
-// })
-
 mediaRouter.get('/', async (request, response) => {
     const sql = `CALL getMedia()`
     console.log(request.body)
