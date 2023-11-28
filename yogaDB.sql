@@ -189,3 +189,12 @@ CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img var
 CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill','https://www.youtube.com/watch?v=G-rsmbK7gdY','see this slay video');
 
 CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill','','')
+
+
+CREATE PROCEDURE deleteMedia(IN p_id INT)
+    BEGIN
+        DELETE FROM media WHERE id=p_id;
+    END;
+
+CALL deleteMedia(6)
+
