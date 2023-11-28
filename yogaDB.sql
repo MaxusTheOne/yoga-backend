@@ -154,3 +154,28 @@ BEGIN
         VALUES (user_id, event_id);
 end;
 CALL associateUserEvent(3,5)
+
+CREATE TABLE media(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(256) NOT NULL,
+    description VARCHAR(500) NOT NULL,
+    img VARCHAR(256) NOT NULL
+)
+
+INSERT INTO media (title, description, img) VALUES
+    ('tis', 'tissemyre', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Meat_eater_ant_feeding_on_honey02.jpg/300px-Meat_eater_ant_feeding_on_honey02.jpg'),
+    ('tree', 'wow tree', 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg'),
+    ('strong', 'wow so strong slay', 'https://web-back.perfectgym.com/sites/default/files/styles/460x/public/equipment%20%286%29.jpg?itok=bC0T32-K');
+
+CREATE PROCEDURE getMedia()
+    BEGIN
+        SELECT * FROM media;
+    end;
+CALL getMedia();
+
+CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img varchar(256))
+    BEGIN
+        INSERT INTO media (title,description, img) VALUES
+           (title,description, img);
+    end;
+CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill');
