@@ -16,14 +16,18 @@ mediaRouter.get('/', async (request, response) => {
     }
 })
 
-//{"title": "Cool event", "description": "no", "img":"https://i.natgeofe.com/n/d472dd3c-8d38-4eed-ae62-7472a12a17de/secretary-bird-thumbnail-nationalgeographic_2331336_3x2.jpg"}
+//{"title": "Cool event", "description": "no", "img":"https://i.natgeofe.com/n/d472dd3c-8d38-4eed-ae62-7472a12a17de/secretary-bird-thumbnail-nationalgeographic_2331336_3x2.jpg","",""}
+
+//{"title": "Cool event", "description": "no", "img":"https://i.natgeofe.com/n/d472dd3c-8d38-4eed-ae62-7472a12a17de/secretary-bird-thumbnail-nationalgeographic_2331336_3x2.jpg","https://www.youtube.com/watch?v=G-rsmbK7gdY","wow see this cool video"}
 
 mediaRouter.post('/', async (request, response) => {
     const title = request.body.title
     const description = request.body.description
     const img = request.body.img
-    const sql = `CALL postmedia(?,?,?)`
-    const values = [title, description, img]
+    const link = request.body.link
+    const linkDescription = request.body.linkDescription
+    const sql = `CALL postmedia(?,?,?,?,?)`
+    const values = [title, description, img, link, linkDescription]
     console.log(values)
 
     try {
