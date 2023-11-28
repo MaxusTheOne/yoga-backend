@@ -39,4 +39,20 @@ mediaRouter.post('/', async (request, response) => {
     }
 })
 
+mediaRouter.delete('/:id', async (request, response) => {
+    const id = request.params.id
+    const values = [id]
+
+    const sql = `CALL deleteMedia(?)`
+    console.log(values)
+
+    try {
+        const [results]: any = await dbconfig.execute(sql, values)
+
+        response.status(200).json(results[0])
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
+
 export default mediaRouter
