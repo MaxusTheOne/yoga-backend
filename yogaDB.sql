@@ -155,19 +155,23 @@ BEGIN
 end;
 CALL associateUserEvent(3,5)
 
+
 CREATE TABLE media(
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(256) NOT NULL,
+    link VARCHAR(256),
+    linkDescription VARCHAR(200),
     description VARCHAR(500) NOT NULL,
     img VARCHAR(256) NOT NULL,
     link VARCHAR(256) NOT NULL,
     linkDescription VARCHAR(256) NOT NULL
 );
 
-INSERT INTO media (title, description, img, link, linkDescription) VALUES
-    ('tis', 'tissemyre', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Meat_eater_ant_feeding_on_honey02.jpg/300px-Meat_eater_ant_feeding_on_honey02.jpg', 'https://en.wikipedia.org/wiki/Yoga', 'See media'),
-    ('tree', 'wow tree', 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg', 'https://en.wikipedia.org/wiki/Yoga', 'See media'),
-    ('strong', 'wow so strong slay', 'https://web-back.perfectgym.com/sites/default/files/styles/460x/public/equipment%20%286%29.jpg?itok=bC0T32-K', 'https://en.wikipedia.org/wiki/Yoga', 'See media');
+INSERT INTO media (title, description, img, link,linkDescription) VALUES
+    ('tis', 'tissemyre', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Meat_eater_ant_feeding_on_honey02.jpg/300px-Meat_eater_ant_feeding_on_honey02.jpg','https://www.youtube.com/watch?v=G-rsmbK7gdY', 'see video wow'),
+    ('tree', 'wow tree', 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg','https://www.youtube.com/watch?v=G-rsmbK7gdY','dsanvlkd'),
+    ('strong', 'wow so strong slay', 'https://web-back.perfectgym.com/sites/default/files/styles/460x/public/equipment%20%286%29.jpg?itok=bC0T32-K','https://www.youtube.com/watch?v=G-rsmbK7gdY','aeglfæ');
+
 
 CREATE PROCEDURE getMedia()
     BEGIN
@@ -175,10 +179,46 @@ CREATE PROCEDURE getMedia()
     end;
 CALL getMedia();
 
-CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img varchar(256), link varchar(256), linkDescription varchar(256))
+DROP PROCEDURE postMedia
+
+CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img varchar(256),link varchar(256), linkDescription VARCHAR(200))
     BEGIN
-        INSERT INTO media (title, description, img, link, linkDescription) VALUES
-           (title, description, img, link, linkDescription);
+        IF link = '' THEN SET link = NULL; END IF;
+        IF linkDescription = '' THEN SET linkDescription = NULL; END IF;
+        INSERT INTO media (title,description, img, link,linkDescription) VALUES
+           (title,description, img,link,linkDescription);
     end;
-CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill', 'https://en.wikipedia.org/wiki/Yoga', 'See media');
+CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill','https://www.youtube.com/watch?v=G-rsmbK7gdY','see this slay video');
+
+CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill','','')
+
+
+CREATE PROCEDURE deleteMedia(IN p_id INT)
+    BEGIN
+        DELETE FROM media WHERE id=p_id;
+    END;
+
+CALL deleteMedia(6)
+
+CREATE PROCEDURE updateMedia(
+    IN p_id INT,
+    IN p_title VARCHAR(256),
+    IN p_link VARCHAR(256),
+    IN p_linkDescription VARCHAR(200),
+    IN p_description VARCHAR(500),
+    IN p_img VARCHAR(256)
+)
+BEGIN
+    UPDATE media
+    SET title = p_title,
+        link = p_link,
+        linkDescription = p_linkDescription,
+        description = p_description,
+        img = p_img
+    WHERE id = p_id;
+END
+
+
+CALL updateMedia(1,'bla','bla','bla','34','5')
+
 
