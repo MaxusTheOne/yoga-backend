@@ -219,6 +219,12 @@ BEGIN
 END
 
 
-CALL updateMedia(1,'bla','bla','bla','34','5')
+CALL updateMedia(1,'bla','bla','bla','34','5');
+
+INSERT INTO events (title, start, end) VALUES
+    ('Early christmas lunch', '2023-11-01 08:00:00', '2023-11-01 17:00:00'),
+    ('Yoga workshop', '2023-11-05 09:30:00', '2023-11-05 16:30:00'),
+    ('Pooping day', '2023-11-15 10:00:00', '2023-11-15 18:00:00');
+
 
 
