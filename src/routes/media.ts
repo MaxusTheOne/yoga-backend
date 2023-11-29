@@ -55,4 +55,28 @@ mediaRouter.delete('/:id', async (request, response) => {
     }
 })
 
+mediaRouter.put('/:id', async (request, response) => {
+    const id = request.params.id
+    const media = request.body
+    const sql = `CALL updateMedia(?,?,?,?,?,?)`
+
+    const values = [
+        id,
+        media.title,
+        media.link,
+        media.linkDescription,
+        media.description,
+        media.img,
+    ]
+
+    console.log(values)
+
+    try {
+        const [results]: any = await dbconfig.execute(sql, values)
+
+        response.status(200).json(results[0])
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
 export default mediaRouter
