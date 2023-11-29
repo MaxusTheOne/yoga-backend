@@ -198,3 +198,25 @@ CREATE PROCEDURE deleteMedia(IN p_id INT)
 
 CALL deleteMedia(6)
 
+CREATE PROCEDURE updateMedia(
+    IN p_id INT,
+    IN p_title VARCHAR(256),
+    IN p_link VARCHAR(256),
+    IN p_linkDescription VARCHAR(200),
+    IN p_description VARCHAR(500),
+    IN p_img VARCHAR(256)
+)
+BEGIN
+    UPDATE media
+    SET title = p_title,
+        link = p_link,
+        linkDescription = p_linkDescription,
+        description = p_description,
+        img = p_img
+    WHERE id = p_id;
+END
+
+
+CALL updateMedia(1,'bla','bla','bla','34','5')
+
+
