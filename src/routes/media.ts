@@ -6,7 +6,7 @@ const mediaRouter = Router()
 mediaRouter.get('/', async (request, response) => {
     const sql = `CALL getMedia()`
     console.log(request.body)
-    //error handling for more robust code :)
+
     try {
         const [results]: any = await dbconfig.execute(sql)
 
