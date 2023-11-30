@@ -33,7 +33,7 @@ eventRouter.get('/search', async (request, response) => {
 // gets page x of events with y events per page,optional queries: page:int, eventsPerPage:int, titleSearch:string
 eventRouter.get('/', async (request, response) => {
     const page = request.query.page || 1
-    const eventsPerPage = request.query.eventsPerPage || 10
+    const eventsPerPage = request.query.eventsPerPage || 501
     const search = request.query.titleSearch || ''
     const sql = `CALL getEventPage(?, ?, ?)`
     const values = [page, eventsPerPage, search]
