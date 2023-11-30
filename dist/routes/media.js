@@ -42,5 +42,26 @@ mediaRouter.delete('/:id', async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
+mediaRouter.put('/:id', async (request, response) => {
+    const id = request.params.id;
+    const media = request.body;
+    const sql = `CALL updateMedia(?,?,?,?,?,?)`;
+    const values = [
+        id,
+        media.title,
+        media.link,
+        media.linkDescription,
+        media.description,
+        media.img,
+    ];
+    console.log(values);
+    try {
+        const [results] = await dbconfig.execute(sql, values);
+        response.status(200).json(results[0]);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
 export default mediaRouter;
 //# sourceMappingURL=media.js.map

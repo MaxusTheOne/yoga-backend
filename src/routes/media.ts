@@ -3,6 +3,7 @@ import { dbconfig } from '../database.js'
 
 const mediaRouter = Router()
 
+// gets all media posts
 mediaRouter.get('/', async (request, response) => {
     const sql = `CALL getMedia()`
     console.log(request.body)
@@ -15,6 +16,8 @@ mediaRouter.get('/', async (request, response) => {
         response.status(500).json({ error: error.message })
     }
 })
+
+//posts a new media
 
 //{"title": "Cool event", "description": "no", "img":"https://i.natgeofe.com/n/d472dd3c-8d38-4eed-ae62-7472a12a17de/secretary-bird-thumbnail-nationalgeographic_2331336_3x2.jpg","",""}
 
@@ -39,6 +42,7 @@ mediaRouter.post('/', async (request, response) => {
     }
 })
 
+//deletes media post
 mediaRouter.delete('/:id', async (request, response) => {
     const id = request.params.id
     const values = [id]
@@ -54,6 +58,8 @@ mediaRouter.delete('/:id', async (request, response) => {
         response.status(500).json({ error: error.message })
     }
 })
+
+//updates media post
 
 mediaRouter.put('/:id', async (request, response) => {
     const id = request.params.id

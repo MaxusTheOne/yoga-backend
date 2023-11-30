@@ -56,5 +56,23 @@ userRouter.post('/eventSignup', async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
+userRouter.post('/userSignup', async (request, response) => {
+    const age = request.body.age;
+    const firstName = request.body.firstName;
+    const lastName = request.body.lastName;
+    const activityLevel = request.body.activityLevel;
+    const phone = request.body.phone;
+    const email = request.body.email;
+    const sql = `CALL postUser(?,?,?,?,?,?)`;
+    const values = [age, firstName, lastName, activityLevel, phone, email];
+    console.log(values);
+    try {
+        const [results] = await dbconfig.execute(sql, values);
+        response.status(200).json(results[0]);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
 export default userRouter;
 //# sourceMappingURL=users.js.map

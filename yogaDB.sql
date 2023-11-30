@@ -219,4 +219,15 @@ END
 
 CALL updateMedia(1,'bla','bla','bla','34','5')
 
+CREATE PROCEDURE postUser(age INT, firstName VARCHAR(256),lastName VARCHAR(256), activityLevel VARCHAR(256), phone DECIMAL, email VARCHAR(256))
+    BEGIN
+        INSERT INTO users (age,firstName, lastName,activityLevel,phone,email,memberStatus) VALUES
+           (age,firstName, lastName,activityLevel,phone,email,0);
+    END;
+
+
+
+CALL postUser(21,'filippa','arildsen','low',12345678,'blop@gmial.com');
+
+
 
