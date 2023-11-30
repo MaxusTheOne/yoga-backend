@@ -17,7 +17,7 @@ eventRouter.get('/search', async (request, response) => {
 });
 eventRouter.get('/', async (request, response) => {
     const page = request.query.page || 1;
-    const eventsPerPage = request.query.eventsPerPage || 10;
+    const eventsPerPage = request.query.eventsPerPage || 501;
     const search = request.query.titleSearch || '';
     const sql = `CALL getEventPage(?, ?, ?)`;
     const values = [page, eventsPerPage, search];

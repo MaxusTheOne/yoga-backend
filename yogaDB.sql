@@ -226,5 +226,6 @@ INSERT INTO events (title, start, end) VALUES
     ('Yoga workshop', '2023-11-05 09:30:00', '2023-11-05 16:30:00'),
     ('Pooping day', '2023-11-15 10:00:00', '2023-11-15 18:00:00');
 
-
+ALTER TABLE events
+MODIFY COLUMN description VARCHAR(1000);
 
