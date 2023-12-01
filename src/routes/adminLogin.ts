@@ -10,8 +10,13 @@ adminRouter.post('/', async (request, response) => {
     const values = [username, password]
 
     try {
-        await dbconfig.execute(sql, values)
-        response.status(200).send(`login succesful`)
+        const [results]: any = await dbconfig.execute(sql, values)
+
+        if (results.length > 0) {
+            response.status(200).send(`Login successful`)
+        } else {
+            response.status(401).json({ error: 'Invalid credentials' })
+        }
     } catch (error: any) {
         response.status(500).json({ error: error.message })
     }
