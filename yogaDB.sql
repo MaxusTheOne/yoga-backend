@@ -219,13 +219,17 @@ BEGIN
 END
 
 
-CALL updateMedia(1,'bla','bla','bla','34','5');
+CALL updateMedia(1,'bla','bla','bla','34','5')
 
-INSERT INTO events (title, start, end) VALUES
-    ('Early christmas lunch', '2023-11-01 08:00:00', '2023-11-01 17:00:00'),
-    ('Yoga workshop', '2023-11-05 09:30:00', '2023-11-05 16:30:00'),
-    ('Pooping day', '2023-11-15 10:00:00', '2023-11-15 18:00:00');
+CREATE PROCEDURE postUser(age INT, firstName VARCHAR(256),lastName VARCHAR(256), activityLevel VARCHAR(256), phone DECIMAL, email VARCHAR(256))
+    BEGIN
+        INSERT INTO users (age,firstName, lastName,activityLevel,phone,email,memberStatus) VALUES
+           (age,firstName, lastName,activityLevel,phone,email,0);
+    END;
 
-ALTER TABLE events
-MODIFY COLUMN description VARCHAR(1000);
+
+
+CALL postUser(21,'filippa','arildsen','low',12345678,'blop@gmial.com');
+
+
 
