@@ -93,6 +93,21 @@ userRouter.post('/userSignup', async (request, response) => {
     }
 })
 
+// gets members by activity level
+// gets all users sorted by activityLevel
+userRouter.get('/activityLevel', async (request, response) => {
+    console.log(request)
+    const sql = `CALL getUsersByActivityLevel()`
+    //error handling for more robust code :)
+    try {
+        const [results]: any = await dbconfig.execute(sql)
+
+        response.status(200).json(results[0])
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
+
 // Retrieve user ID by email
 userRouter.get('/userIdByEmail', async (request, response) => {
     const userEmail = request.query.email
