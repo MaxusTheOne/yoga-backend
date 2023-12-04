@@ -59,9 +59,9 @@ userRouter.put('/:id/promote', async (request, response) => {
 // associates a user with an event by ID
 userRouter.post('/eventSignup', async (request, response) => {
     const { eventId, userId } = request.body
+
     const sql = `CALL associateUserEvent(?,?)`
-    const values = [eventId, userId]
-    console.log(values)
+    const values = [userId, eventId]
 
     try {
         const [results]: any = await dbconfig.execute(sql, values)

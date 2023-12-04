@@ -46,8 +46,7 @@ userRouter.put('/:id/promote', async (request, response) => {
 userRouter.post('/eventSignup', async (request, response) => {
     const { eventId, userId } = request.body;
     const sql = `CALL associateUserEvent(?,?)`;
-    const values = [eventId, userId];
-    console.log(values);
+    const values = [userId, eventId];
     try {
         const [results] = await dbconfig.execute(sql, values);
         response.status(200).json(results[0]);
