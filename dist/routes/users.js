@@ -74,5 +74,16 @@ userRouter.post('/userSignup', async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
+userRouter.get('/activityLevel', async (request, response) => {
+    console.log(request);
+    const sql = `CALL getUsersByActivityLevel()`;
+    try {
+        const [results] = await dbconfig.execute(sql);
+        response.status(200).json(results[0]);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
 export default userRouter;
 //# sourceMappingURL=users.js.map

@@ -140,6 +140,22 @@ BEGIN
     WHERE id = var_id;
 end;
 
+CREATE PROCEDURE getUsersByActivityLevel()
+    BEGIN
+        SELECT *
+        FROM users
+        ORDER BY
+            CASE
+                WHEN activityLevel = 'High' THEN 1
+                WHEN activityLevel = 'Medium' THEN 2
+                WHEN activityLevel = 'Low' THEN 3
+                ELSE 4
+                END;
+
+    END;
+
+CALL getUsersByActivityLevel();
+
 CREATE TABLE users_events(
     user_id INT NOT NULL,
     event_id INT NOT NULL,
@@ -153,7 +169,7 @@ BEGIN
     INSERT INTO users_events (user_id, event_id)
         VALUES (user_id, event_id);
 end;
-CALL associateUserEvent(3,5)
+CALL associateUserEvent(3,5);
 
 
 CREATE TABLE media(
