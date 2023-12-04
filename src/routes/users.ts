@@ -92,4 +92,24 @@ userRouter.post('/userSignup', async (request, response) => {
         response.status(500).json({ error: error.message })
     }
 })
+
+// Retrieve user ID by email
+userRouter.get('/userIdByEmail', async (request, response) => {
+    const userEmail = request.query.email
+    const sql = 'SELECT userId FROM users WHERE email = ?'
+    const values = [userEmail]
+
+    try {
+        const [results]: any = await dbconfig.execute(sql, values)
+
+        if (results.length > 0) {
+            response.status(200).json({ userId: results[0].userId })
+        } else {
+            response.status(404).json({ error: 'User not found' })
+        }
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
+
 export default userRouter
