@@ -258,3 +258,7 @@ INSERT INTO admin (username, password) VALUES ('Marcela', 'admin123');
 
 SELECT * FROM admin WHERE username = 'Marcela' AND password = 'admin123';
 
+CREATE PROCEDURE deleteUser(IN p_id INT)
+    BEGIN
+        DELETE FROM users WHERE users.id=p_id;
+    END;
