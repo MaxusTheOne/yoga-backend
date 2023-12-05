@@ -15,6 +15,17 @@ eventRouter.get('/search', async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
+eventRouter.get('/signups', async (request, response) => {
+    const sql = 'SELECT * FROM users_events';
+    console.log(request.body);
+    try {
+        const [results] = await dbconfig.execute(sql);
+        response.status(200).json(results);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
 eventRouter.get('/', async (request, response) => {
     const page = request.query.page || 1;
     const eventsPerPage = request.query.eventsPerPage || 501;

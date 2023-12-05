@@ -30,6 +30,20 @@ eventRouter.get('/search', async (request, response) => {
     }
 })
 
+eventRouter.get('/signups', async (request, response) => {
+    const sql = 'SELECT * FROM users_events'
+
+    console.log(request.body)
+
+    try {
+        const [results]: any = await dbconfig.execute(sql)
+
+        response.status(200).json(results)
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
+
 // gets page x of events with y events per page,optional queries: page:int, eventsPerPage:int, titleSearch:string
 eventRouter.get('/', async (request, response) => {
     const page = request.query.page || 1

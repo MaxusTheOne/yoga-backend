@@ -258,3 +258,4 @@ INSERT INTO admin (username, password) VALUES ('Marcela', 'admin123');
 
 SELECT * FROM admin WHERE username = 'Marcela' AND password = 'admin123';
 
+SELECT * FROM users_events
