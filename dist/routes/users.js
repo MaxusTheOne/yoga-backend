@@ -57,14 +57,11 @@ userRouter.post('/eventSignup', async (request, response) => {
     }
 });
 userRouter.post('/userSignup', async (request, response) => {
-    const age = request.body.age;
     const firstName = request.body.firstName;
     const lastName = request.body.lastName;
-    const activityLevel = request.body.activityLevel;
-    const phone = request.body.phone;
     const email = request.body.email;
-    const sql = `CALL postUser(?,?,?,?,?,?)`;
-    const values = [age, firstName, lastName, activityLevel, phone, email];
+    const sql = `CALL postUser(?,?,?)`;
+    const values = [firstName, lastName, email];
     console.log(values);
     try {
         const [results] = await dbconfig.execute(sql, values);
