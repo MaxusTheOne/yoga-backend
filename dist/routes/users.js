@@ -43,6 +43,19 @@ userRouter.put('/:id/promote', async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
+userRouter.put('/:id/demote', async (request, response) => {
+    const memberId = request.params.id;
+    const sql = `CALL demoteToGuest(?)`;
+    const values = [memberId];
+    console.log(values);
+    try {
+        const [results] = await dbconfig.execute(sql, values);
+        response.status(200).json(results[0]);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
 userRouter.post('/eventSignup', async (request, response) => {
     const { eventId, userId } = request.body;
     const sql = `CALL associateUserEvent(?,?)`;
@@ -93,6 +106,19 @@ userRouter.get('/userIdByEmail', async (request, response) => {
         else {
             response.status(404).json({ error: 'User not found' });
         }
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
+userRouter.delete('/:id', async (request, response) => {
+    const id = request.params.id;
+    const values = [id];
+    const sql = `CALL deleteUser(?)`;
+    console.log(values);
+    try {
+        const [results] = await dbconfig.execute(sql, values);
+        response.status(200).json(results[0]);
     }
     catch (error) {
         response.status(500).json({ error: error.message });
