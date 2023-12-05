@@ -2,8 +2,6 @@ CREATE DATABASE yogaDB;
 
 use yogaDB;
 
-DROP TABLE events;
-
 -- Creating tables
 CREATE TABLE events (
      id INT AUTO_INCREMENT PRIMARY KEY,
@@ -73,7 +71,7 @@ CREATE PROCEDURE getEventsByTitle(variable varchar(256))
     END;
 CALL getEventsByTitle("nt 1");
 
-DROP PROCEDURE getEventPage;
+
 CREATE PROCEDURE getEventPage(var_page int, eventPerPage int, var_title varchar(256))
     BEGIN
         DECLARE setOffset INT;
@@ -175,8 +173,6 @@ CALL associateUserEvent(3,5);
 CREATE TABLE media(
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(256) NOT NULL,
-    link VARCHAR(256),
-    linkDescription VARCHAR(200),
     description VARCHAR(500) NOT NULL,
     img VARCHAR(256) NOT NULL,
     link VARCHAR(256) NOT NULL,
@@ -195,7 +191,6 @@ CREATE PROCEDURE getMedia()
     end;
 CALL getMedia();
 
-DROP PROCEDURE postMedia
 
 CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img varchar(256),link varchar(256), linkDescription VARCHAR(200))
     BEGIN
@@ -206,15 +201,13 @@ CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img var
     end;
 CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill','https://www.youtube.com/watch?v=G-rsmbK7gdY','see this slay video');
 
-CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill','','')
-
 
 CREATE PROCEDURE deleteMedia(IN p_id INT)
     BEGIN
         DELETE FROM media WHERE id=p_id;
     END;
 
-CALL deleteMedia(6)
+CALL deleteMedia(6);
 
 CREATE PROCEDURE updateMedia(
     IN p_id INT,
@@ -232,10 +225,8 @@ BEGIN
         description = p_description,
         img = p_img
     WHERE id = p_id;
-END
+END;
 
-
-CALL updateMedia(1,'bla','bla','bla','34','5')
 
 CREATE PROCEDURE postUser(age INT, firstName VARCHAR(256),lastName VARCHAR(256), activityLevel VARCHAR(256), phone DECIMAL, email VARCHAR(256))
     BEGIN
