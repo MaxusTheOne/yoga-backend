@@ -59,9 +59,9 @@ userRouter.put('/:id/promote', async (request, response) => {
 // associates a user with an event by ID
 userRouter.post('/eventSignup', async (request, response) => {
     const { eventId, userId } = request.body
+
     const sql = `CALL associateUserEvent(?,?)`
-    const values = [eventId, userId]
-    console.log(values)
+    const values = [userId, eventId]
 
     try {
         const [results]: any = await dbconfig.execute(sql, values)
@@ -89,4 +89,39 @@ userRouter.post('/userSignup', async (request, response) => {
         response.status(500).json({ error: error.message })
     }
 })
+
+// gets members by activity level
+// gets all users sorted by activityLevel
+userRouter.get('/activityLevel', async (request, response) => {
+    console.log(request)
+    const sql = `CALL getUsersByActivityLevel()`
+    //error handling for more robust code :)
+    try {
+        const [results]: any = await dbconfig.execute(sql)
+
+        response.status(200).json(results[0])
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
+
+// Retrieve user ID by email
+userRouter.get('/userIdByEmail', async (request, response) => {
+    const userEmail = request.query.email
+    const sql = 'SELECT id FROM users WHERE email = ?'
+    const values = [userEmail]
+
+    try {
+        const [results]: any = await dbconfig.execute(sql, values)
+
+        if (results.length > 0) {
+            response.status(200).json({ userId: results[0].id })
+        } else {
+            response.status(404).json({ error: 'User not found' })
+        }
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
+
 export default userRouter

@@ -46,8 +46,7 @@ userRouter.put('/:id/promote', async (request, response) => {
 userRouter.post('/eventSignup', async (request, response) => {
     const { eventId, userId } = request.body;
     const sql = `CALL associateUserEvent(?,?)`;
-    const values = [eventId, userId];
-    console.log(values);
+    const values = [userId, eventId];
     try {
         const [results] = await dbconfig.execute(sql, values);
         response.status(200).json(results[0]);
@@ -66,6 +65,34 @@ userRouter.post('/userSignup', async (request, response) => {
     try {
         const [results] = await dbconfig.execute(sql, values);
         response.status(200).json(results[0]);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
+userRouter.get('/activityLevel', async (request, response) => {
+    console.log(request);
+    const sql = `CALL getUsersByActivityLevel()`;
+    try {
+        const [results] = await dbconfig.execute(sql);
+        response.status(200).json(results[0]);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
+userRouter.get('/userIdByEmail', async (request, response) => {
+    const userEmail = request.query.email;
+    const sql = 'SELECT id FROM users WHERE email = ?';
+    const values = [userEmail];
+    try {
+        const [results] = await dbconfig.execute(sql, values);
+        if (results.length > 0) {
+            response.status(200).json({ userId: results[0].id });
+        }
+        else {
+            response.status(404).json({ error: 'User not found' });
+        }
     }
     catch (error) {
         response.status(500).json({ error: error.message });
