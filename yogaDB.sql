@@ -237,15 +237,16 @@ END
 
 CALL updateMedia(1,'bla','bla','bla','34','5')
 
-CREATE PROCEDURE postUser(age INT, firstName VARCHAR(256),lastName VARCHAR(256), activityLevel VARCHAR(256), phone DECIMAL, email VARCHAR(256))
+
+CREATE PROCEDURE postUser(firstName VARCHAR(256),lastName VARCHAR(256), email VARCHAR(256))
     BEGIN
-        INSERT INTO users (age,firstName, lastName,activityLevel,phone,email,memberStatus) VALUES
-           (age,firstName, lastName,activityLevel,phone,email,0);
+        INSERT INTO users (firstName, lastName,email,memberStatus) VALUES
+           (firstName, lastName,email,0);
     END;
 
 
 
-CALL postUser(21,'filippa','arildsen','low',12345678,'blop@gmial.com');
+CALL postUser('filippa','arildsen','blop@gmial.com');
 
 CREATE TABLE admin (
     id INT AUTO_INCREMENT PRIMARY KEY,
