@@ -6,71 +6,57 @@ use yogaDB;
 CREATE TABLE events (
      id INT AUTO_INCREMENT PRIMARY KEY,
      title VARCHAR(256) NOT NULL,
-     description varchar(256),
+     description varchar(1000),
      start DATETIME NOT NULL,
      end DATETIME NOT NULL
 );
 CREATE TABLE users (
      id INT AUTO_INCREMENT PRIMARY KEY,
-     age INT NOT NULL,
      firstName varchar(256) NOT NULL,
      lastName varchar(256) NOT NULL,
      memberStatus bool,
-     activityLevel varchar(256),
-     phone numeric,
      email varchar(256)
 );
 
--- Inserting data into the artists table
-INSERT INTO events (title, start, end) VALUES
-    ('Event 1', '2023-01-01 08:00:00', '2023-01-01 17:00:00'),
-    ('Event 2', '2023-01-02 09:30:00', '2023-01-02 16:30:00'),
-    ('Event 3', '2023-01-03 10:00:00', '2023-01-03 18:00:00');
-
--- Inserting 12 more events into the artists table
-
-INSERT INTO events (title, start, end) VALUES
-    ('Conference A', '2023-02-15 09:00:00', '2023-02-15 17:00:00'),
-    ('Workshop X', '2023-03-10 13:30:00', '2023-03-10 16:00:00'),
-    ('Music Festival', '2023-04-22 18:00:00', '2023-04-23 02:00:00'),
-    ('Art Exhibition', '2023-05-05 10:00:00', '2023-05-05 18:00:00'),
-    ('Team Building', '2023-06-08 14:00:00', '2023-06-08 17:00:00'),
-    ('Product Launch', '2023-07-20 11:00:00', '2023-07-20 14:30:00'),
-    ('Movie Night', '2023-08-12 19:30:00', '2023-08-12 23:00:00'),
-    ('Science Fair', '2023-09-05 08:30:00', '2023-09-05 16:00:00'),
-    ('Charity Gala', '2023-10-18 18:30:00', '2023-10-18 22:00:00'),
-    ('Hackathon', '2023-11-11 10:00:00', '2023-11-12 18:00:00'),
-    ('Winter Wonderland', '2023-12-25 16:00:00', '2023-12-25 22:00:00'),
-    ('New Year''s Eve Party', '2023-12-31 21:00:00', '2024-01-01 02:00:00');
+INSERT INTO events (title, description, start, end) VALUES
+    ('Conference A','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-02-15 09:00:00', '2023-02-15 17:00:00'),
+    ('Workshop X','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-03-10 13:30:00', '2023-03-10 16:00:00'),
+    ('Music Festival','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-04-22 18:00:00', '2023-04-23 02:00:00'),
+    ('Art Exhibition','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-05-05 10:00:00', '2023-05-05 18:00:00'),
+    ('Team Building','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-06-08 14:00:00', '2023-06-08 17:00:00'),
+    ('Product Launch','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-07-20 11:00:00', '2023-07-20 14:30:00'),
+    ('Movie Night','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-08-12 19:30:00', '2023-08-12 23:00:00'),
+    ('Science Fair','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-09-05 08:30:00', '2023-09-05 16:00:00'),
+    ('Charity Gala','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-10-18 18:30:00', '2023-10-18 22:00:00'),
+    ('Hackathon','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-11-11 10:00:00', '2023-11-12 18:00:00'),
+    ('Winter Wonderland','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-12-25 16:00:00', '2023-12-25 22:00:00'),
+    ('New Year''s Eve Party','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida turpis quis ipsum convallis, vel fermentum augue consectetur. In hac habitasse platea dictumst. Ut facilisis quam sit amet risus aliquet, a ultricies sapien convallis. Sed eu vestibulum justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce vel est vitae est venenatis gravida vel id justo. Nam fermentum, sem id ultrices cursus, nulla leo ultricies arcu, eu bibendum elit elit non odio. Proin eu justo vitae elit tincidunt ultricies. Phasellus sed nisl ut velit mollis congue. Integer id elit euismod, feugiat ligula sit amet, fermentum quam. Sed vestibulum tellus id lacus sollicitudin, id ultricies nunc scelerisque. Mauris consequat mauris at purus tincidunt, vel pellentesque lectus varius. Suspendisse potenti. Nam id sapien a elit pulvinar vestibulum.', '2023-12-31 21:00:00', '2024-01-01 02:00:00');
 
 -- Inserting users into the users table
-INSERT INTO users (age, firstName, lastName, memberStatus, activityLevel, phone, email) VALUES
-    (25, 'John', 'Doe', true, 'High', 1234567890, 'john.doe@example.com'),
-    (30, 'Jane', 'Smith', false, 'Medium', 9876543210, 'jane.smith@example.com'),
-    (22, 'Alice', 'Johnson', true, 'Low', 5551234567, 'alice.johnson@example.com'),
-    (28, 'Bob', 'Williams', true, 'High', 1112223333, 'bob.williams@example.com'),
-    (35, 'Eva', 'Anderson', false, 'Medium', 9998887777, 'eva.anderson@example.com'),
-    (40, 'Charlie', 'Brown', true, 'Low', 4445556666, 'charlie.brown@example.com'),
-    (26, 'Grace', 'Miller', false, 'High', 7778889999, 'grace.miller@example.com'),
-    (32, 'David', 'Taylor', true, 'Medium', 3334445555, 'david.taylor@example.com'),
-    (27, 'Sophie', 'Clark', false, 'Low', 6667778888, 'sophie.clark@example.com'),
-    (33, 'Michael', 'Jones', true, 'High', 2223334444, 'michael.jones@example.com'),
-    (29, 'Olivia', 'Davis', true, 'Medium', 8889990000, 'olivia.davis@example.com'),
-    (31, 'Henry', 'Moore', false, 'Low', 1239876543, 'henry.moore@example.com');
+INSERT INTO users (firstName, lastName, memberStatus, email) VALUES
+    ( 'John', 'Doe', true, 'john.doe@example.com'),
+    ( 'Jane', 'Smith', false,  'jane.smith@example.com'),
+    ( 'Alice', 'Johnson', true, 'alice.johnson@example.com'),
+    ( 'Bob', 'Williams', true, 'bob.williams@example.com'),
+    ( 'Eva', 'Anderson', false,  'eva.anderson@example.com'),
+    ( 'Charlie', 'Brown', true,  'charlie.brown@example.com'),
+    ( 'Grace', 'Miller', false,  'grace.miller@example.com'),
+    ( 'David', 'Taylor', true,  'david.taylor@example.com'),
+    ( 'Sophie', 'Clark', false, 'sophie.clark@example.com'),
+    ( 'Michael', 'Jones', true,  'michael.jones@example.com'),
+    ( 'Olivia', 'Davis', true,  'olivia.davis@example.com'),
+    ( 'Henry', 'Moore', false,  'henry.moore@example.com');
 
 CREATE PROCEDURE getEvents()
     BEGIN
         SELECT * FROM events;
     end;
-CALL getEvents();
 
 CREATE PROCEDURE getEventsByTitle(variable varchar(256))
     BEGIN
         SELECT * FROM events
         WHERE title LIKE CONCAT("%",variable,"%");
     END;
-CALL getEventsByTitle("nt 1");
-
 
 CREATE PROCEDURE getEventPage(var_page int, eventPerPage int, var_title varchar(256))
     BEGIN
@@ -83,20 +69,17 @@ CREATE PROCEDURE getEventPage(var_page int, eventPerPage int, var_title varchar(
             LIMIT eventPerPage OFFSET setOffset;
         COMMIT;
     end;
-CALL getEventPage(1, 5,  "t");
 
 CREATE PROCEDURE postEvent(title varchar(256), description varchar(256), start DATETIME, end DATETIME)
     BEGIN
         INSERT INTO events (title,description, start, end) VALUES
            (title,description, start, end);
     end;
-CALL postEvent("Cool event", "no", "2023-04-23 02:00:00","2023-04-23 06:00:00" );
 
 CREATE PROCEDURE getUsers()
 BEGIN
     SELECT * FROM users;
 end;
-CALL getUsers();
 
 CREATE PROCEDURE getUserPageFirstNameSearch(var_page int, eventPerPage int, var_name varchar(256))
 BEGIN
@@ -108,7 +91,6 @@ BEGIN
     LIMIT eventPerPage OFFSET setOffset;
     COMMIT;
 end;
-CALL getUserPageFirstNameSearch(1, 5, "a");
 
 CREATE PROCEDURE getAllMembers(var_page int, eventPerPage int)
 BEGIN
@@ -121,7 +103,6 @@ BEGIN
     LIMIT eventPerPage OFFSET setOffset;
     COMMIT;
 end;
-CALL getAllMembers(1, 9)
 
 CREATE PROCEDURE promoteToMember(var_id int)
 BEGIN
@@ -129,7 +110,6 @@ BEGIN
         SET memberStatus= 1
     WHERE id = var_id;
 end;
-CALL promoteToMember(2);
 
 CREATE PROCEDURE demoteToGuest(var_id int)
 BEGIN
@@ -152,8 +132,6 @@ CREATE PROCEDURE getUsersByActivityLevel()
 
     END;
 
-CALL getUsersByActivityLevel();
-
 CREATE TABLE users_events(
     user_id INT NOT NULL,
     event_id INT NOT NULL,
@@ -167,8 +145,6 @@ BEGIN
     INSERT INTO users_events (user_id, event_id)
         VALUES (user_id, event_id);
 end;
-CALL associateUserEvent(3,5);
-
 
 CREATE TABLE media(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -180,17 +156,14 @@ CREATE TABLE media(
 );
 
 INSERT INTO media (title, description, img, link,linkDescription) VALUES
-    ('tis', 'tissemyre', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Meat_eater_ant_feeding_on_honey02.jpg/300px-Meat_eater_ant_feeding_on_honey02.jpg','https://www.youtube.com/watch?v=G-rsmbK7gdY', 'see video wow'),
-    ('tree', 'wow tree', 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg','https://www.youtube.com/watch?v=G-rsmbK7gdY','dsanvlkd'),
-    ('strong', 'wow so strong slay', 'https://web-back.perfectgym.com/sites/default/files/styles/460x/public/equipment%20%286%29.jpg?itok=bC0T32-K','https://www.youtube.com/watch?v=G-rsmbK7gdY','aeglfæ');
-
+    ('Cold yoga', 'A video about yoga', 'https://astanga.dk/wp-content/uploads/2018/08/22789147_1471696416246073_7185749654797409954_n.jpg','https://www.youtube.com/watch?v=G-rsmbK7gdY', 'Click to see'),
+    ('Astanga', 'An article about yoga', 'https://live.staticflickr.com/8071/29438001551_8c902c8f14_b.jpg','https://www.youtube.com/watch?v=G-rsmbK7gdY','Click to see'),
+    ('Hot yoga', 'Some content about hot yoga', 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Mr-yoga-headstand-5-6.jpg','https://www.youtube.com/watch?v=G-rsmbK7gdY','Click to see');
 
 CREATE PROCEDURE getMedia()
     BEGIN
         SELECT * FROM media;
     end;
-CALL getMedia();
-
 
 CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img varchar(256),link varchar(256), linkDescription VARCHAR(200))
     BEGIN
@@ -199,15 +172,11 @@ CREATE PROCEDURE postMedia(title varchar(256), description varchar(500), img var
         INSERT INTO media (title,description, img, link,linkDescription) VALUES
            (title,description, img,link,linkDescription);
     end;
-CALL postMedia('birdie', 'wow cutie', 'https://media.cnn.com/api/v1/images/stellar/prod/190414090035-01-cassowary.jpg?q=w_2930,h_1953,x_0,y_0,c_fill','https://www.youtube.com/watch?v=G-rsmbK7gdY','see this slay video');
-
 
 CREATE PROCEDURE deleteMedia(IN p_id INT)
     BEGIN
         DELETE FROM media WHERE id=p_id;
     END;
-
-CALL deleteMedia(6);
 
 CREATE PROCEDURE updateMedia(
     IN p_id INT,
@@ -227,16 +196,11 @@ BEGIN
     WHERE id = p_id;
 END;
 
-
 CREATE PROCEDURE postUser(firstName VARCHAR(256),lastName VARCHAR(256), email VARCHAR(256))
     BEGIN
         INSERT INTO users (firstName, lastName,email,memberStatus) VALUES
            (firstName, lastName,email,0);
     END;
-
-
-
-CALL postUser('filippa','arildsen','blop@gmial.com');
 
 CREATE TABLE admin (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -246,12 +210,7 @@ CREATE TABLE admin (
 
 INSERT INTO admin (username, password) VALUES ('Marcela', 'admin123');
 
-
-SELECT * FROM admin WHERE username = 'Marcela' AND password = 'admin123';
-
-SELECT * FROM users_eventsCREATE PROCEDURE deleteUser(IN p_id INT)
+CREATE PROCEDURE deleteUser(IN p_id INT)
     BEGIN
         DELETE FROM users WHERE users.id=p_id;
     END;
-
-SELECT * FROM users_events
