@@ -1,8 +1,9 @@
 import mysql from 'mysql2/promise'
 import * as dotenv from 'dotenv'
+import fs from 'fs'
 dotenv.config()
 
-const dbconnect = {
+const dbconnect: any = {
     host: process.env.MYSQL_HOST as string,
     port: Number(process.env.MYSQL_PORT) as number,
     user: process.env.MYSQL_USER as string,
@@ -11,10 +12,15 @@ const dbconnect = {
 }
 
 console.log(`host:${process.env.MYSQL_HOST}`)
+const filePath = 'DigiCertGlobalRootCA.crt.pem'
+const fileContent = fs.readFileSync(filePath, 'utf8')
+console.log(fileContent)
 
-// if (process.env.MYSQL_CERT) {
-//   dbconnect.ssl = { cs: fs.readFileSync("DigiCertGlobalRootCA.crt.pem") };
-// }
+if (process.env.MYSQL_CERT) {
+    dbconnect.ssl = {
+        cs: fs.readFileSync('DigiCertGlobalRootCA.crt.pem'),
+    }
+}
 
 const dbconfig = await mysql.createConnection(dbconnect)
 
