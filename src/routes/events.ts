@@ -62,8 +62,8 @@ eventRouter.get('/', async (request, response) => {
     }
 })
 
-// posts an event with syntax {title: string , description?: string, start: stringDate, end: stringDate}
-// example = {title:"Cool event", description:"no", start:"2023-04-23 02:00:00", end:"2023-04-23 06:00:00"}
+// posts an event with syntax {title: string , description?: string, start: stringDate, end: stringDate, imageUrl:string, linkUrl:string}
+// example = {title:"Cool event", description:"no", start:"2023-04-23 02:00:00", end:"2023-04-23 06:00:00", imageUrl:'some url', linkUrl:'some url'}
 
 eventRouter.post('/', async (request, response) => {
     const title = request.body.title
