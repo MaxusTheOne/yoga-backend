@@ -47,8 +47,9 @@ eventRouter.post('/', async (request, response) => {
     const start = request.body.start;
     const end = request.body.end;
     const imageUrl = request.body.imageUrl;
-    const sql = `CALL postEvent(?, ?, ?, ?, ?)`;
-    const values = [title, description, start, end, imageUrl];
+    const linkUrl = request.body.linkUrl;
+    const sql = `CALL postEvent(?, ?, ?, ?, ?, ?)`;
+    const values = [title, description, start, end, imageUrl, linkUrl];
     console.log(values);
     const compareDates = (d1, d2) => {
         let date1 = new Date(d1).getTime();
