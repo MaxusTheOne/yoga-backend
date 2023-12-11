@@ -70,8 +70,9 @@ eventRouter.post('/', async (request, response) => {
     const description = request.body.description || ''
     const start = request.body.start
     const end = request.body.end
-    const sql = `CALL postEvent(?, ?, ?, ?)`
-    const values = [title, description, start, end]
+    const imageUrl = request.body.imageUrl
+    const sql = `CALL postEvent(?, ?, ?, ?, ?)`
+    const values = [title, description, start, end, imageUrl]
     console.log(values)
     const compareDates = (d1: string, d2: string) => {
         let date1 = new Date(d1).getTime()
