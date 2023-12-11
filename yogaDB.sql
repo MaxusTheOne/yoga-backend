@@ -72,12 +72,23 @@ CREATE PROCEDURE getEventPage(var_page int, eventPerPage int, var_title varchar(
         COMMIT;
     end;
 
-CREATE PROCEDURE postEvent(title varchar(256), description varchar(256), start DATETIME, end DATETIME, image varchar(1000))
-    BEGIN
-        INSERT INTO events (title,description, start, end, image)
-        VALUES
-           (title,description, start, end, image);
-    end;
+CREATE PROCEDURE postEvent(
+    title varchar(256),
+    description varchar(256),
+    start DATETIME,
+    end DATETIME,
+    image varchar(1000),
+    linkUrl varchar(1000)
+)
+BEGIN
+    INSERT INTO events (title, description, start, end, image, linkUrl)
+    VALUES (title, description, start, end, image, linkUrl);
+END;
+
+CREATE PROCEDURE getUsers()
+BEGIN
+    SELECT * FROM users;
+end;
 
 CREATE PROCEDURE getUsers()
 BEGIN
@@ -217,3 +228,6 @@ CREATE PROCEDURE deleteUser(IN p_id INT)
     BEGIN
         DELETE FROM users WHERE users.id=p_id;
     END;
+
+ALTER TABLE events
+ADD COLUMN linkUrl VARCHAR(500)
