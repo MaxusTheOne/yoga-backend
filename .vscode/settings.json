@@ -1,3 +1,5 @@
 {
-    "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"]
+    "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+    "appService.defaultWebAppToDeploy": "/subscriptions/efca385c-c2df-4835-85da-44dce1b50135/resourceGroups/Default/providers/Microsoft.Web/sites/YogaBackend",
+    "appService.deploySubpath": "."
 }
