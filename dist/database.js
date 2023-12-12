@@ -10,9 +10,6 @@ const dbconnect = {
     password: process.env.MYSQL_PASSWORD,
 };
 console.log(`host:${process.env.MYSQL_HOST}`);
-const filePath = 'DigiCertGlobalRootCA.crt.pem';
-const fileContent = fs.readFileSync(filePath, 'utf8');
-console.log(fileContent);
 if (process.env.MYSQL_CERT) {
     dbconnect.ssl = {
         cs: fs.readFileSync('DigiCertGlobalRootCA.crt.pem'),
