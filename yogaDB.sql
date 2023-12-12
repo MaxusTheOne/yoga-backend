@@ -90,11 +90,6 @@ BEGIN
     SELECT * FROM users;
 end;
 
-CREATE PROCEDURE getUsers()
-BEGIN
-    SELECT * FROM users;
-end;
-
 CREATE PROCEDURE getUserPageFirstNameSearch(var_page int, eventPerPage int, var_name varchar(256))
 BEGIN
     DECLARE setOffset INT;
@@ -172,7 +167,10 @@ CREATE TABLE media(
 INSERT INTO media (title, description, img, link,linkDescription) VALUES
     ('Cold yoga', 'A video about yoga', 'https://astanga.dk/wp-content/uploads/2018/08/22789147_1471696416246073_7185749654797409954_n.jpg','https://youtu.be/ke9XLlSvbjk?feature=shared', 'Click to see'),
     ('Astanga', 'An article about yoga', 'https://live.staticflickr.com/8071/29438001551_8c902c8f14_b.jpg','https://youtu.be/ke9XLlSvbjk?feature=shared','Click to see'),
-    ('Hot yoga', 'Some content about hot yoga', 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Mr-yoga-headstand-5-6.jpg','https://youtu.be/ke9XLlSvbjk?feature=shared','Click to see');
+    ('Hot yoga', 'Some content about hot yoga', 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Mr-yoga-headstand-5-6.jpg','https://youtu.be/ke9XLlSvbjk?feature=shared','Click to see'),
+    ('Other yoga', 'A video about yoga', 'https://astanga.dk/wp-content/uploads/2018/08/22789147_1471696416246073_7185749654797409954_n.jpg','https://youtu.be/ke9XLlSvbjk?feature=shared', 'Click to see'),
+    ('Interesting yoga', 'An article about yoga', 'https://live.staticflickr.com/8071/29438001551_8c902c8f14_b.jpg','https://youtu.be/ke9XLlSvbjk?feature=shared','Click to see'),
+    ('Yoga expert speaker', 'Some content about hot yoga', 'https://upload.wikimedia.org/wikipedia/commons/b/b2/Mr-yoga-headstand-5-6.jpg','https://youtu.be/ke9XLlSvbjk?feature=shared','Click to see');
 
 CREATE PROCEDURE getMedia()
     BEGIN
@@ -230,7 +228,7 @@ CREATE PROCEDURE deleteUser(IN p_id INT)
     END;
 
 ALTER TABLE events
-ADD COLUMN linkUrl VARCHAR(500)
+ADD COLUMN linkUrl VARCHAR(500);
 
 CREATE PROCEDURE deleteEvent(IN eventId INT)
 BEGIN
