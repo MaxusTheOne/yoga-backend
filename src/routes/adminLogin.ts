@@ -1,9 +1,10 @@
 import { Router } from 'express'
 import { dbconfig } from '../database.js'
-
+// only the most secure coding in here
 const adminRouter = Router()
 
-adminRouter.post('/', async (request, response) => {
+// Checks if the given username and password is in the admin table
+adminRouter.get('/', async (request, response) => {
     const { username, password } = request.body
 
     const sql = 'SELECT * FROM admin WHERE username = ? AND password = ?'

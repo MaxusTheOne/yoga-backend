@@ -2,17 +2,8 @@ import { Router } from 'express'
 import { dbconfig } from '../database.js'
 
 const eventRouter = Router()
-// //gets all events
-// eventRouter.get("/", async (request, response) =>{
-//     const sql = `CALL getEvents()`
-//     console.log(request.body);
 
-//     const [results] = await dbconfig.execute(sql);
-
-//     response.json(results)
-// })
-
-// gets page, better use path below
+// gets page, legacy code x), better use path below
 eventRouter.get('/search', async (request, response) => {
     const page = request.query.page || 1
     const eventsPerPage = request.query.eventsPerPage || 501
@@ -30,6 +21,7 @@ eventRouter.get('/search', async (request, response) => {
     }
 })
 
+// gets the event signees id
 eventRouter.get('/signups', async (request, response) => {
     const sql = 'SELECT * FROM users_events'
 
@@ -44,7 +36,7 @@ eventRouter.get('/signups', async (request, response) => {
     }
 })
 
-// gets page x of events with y events per page,optional queries: page:int, eventsPerPage:int, titleSearch:string
+// gets page x of events with y events per page,optional queries: ?page:int, eventsPerPage:int, titleSearch:string
 eventRouter.get('/', async (request, response) => {
     const page = request.query.page || 1
     const eventsPerPage = request.query.eventsPerPage || 501

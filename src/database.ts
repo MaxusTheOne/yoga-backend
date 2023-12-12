@@ -13,6 +13,7 @@ const dbconnect: any = {
 
 console.log(`host:${process.env.MYSQL_HOST}`)
 
+// Reading our certificate to securely connect to our db
 if (process.env.MYSQL_CERT) {
     dbconnect.ssl = {
         cs: fs.readFileSync('DigiCertGlobalRootCA.crt.pem'),

@@ -72,7 +72,7 @@ userRouter.put('/:id/demote', async (request, response) => {
     }
 })
 
-// associates a user with an event by ID
+// associates a user with an event by ID: {"eventId":int, "userId":int }
 userRouter.post('/eventSignup', async (request, response) => {
     const { eventId, userId } = request.body
 
@@ -121,7 +121,7 @@ userRouter.get('/activityLevel', async (request, response) => {
     }
 })
 
-// Retrieve user ID by email
+// Retrieve user ID by email using optional: ?email
 userRouter.get('/userIdByEmail', async (request, response) => {
     const userEmail = request.query.email
     const sql = 'SELECT id FROM users WHERE email = ?'
