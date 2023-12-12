@@ -19,9 +19,7 @@ mediaRouter.get('/', async (request, response) => {
 
 //posts a new media
 // syntax: {"title": String, "description": String, "img": String,"link": String,"linkDescription": String}
-
 //example:{"title": "Cool event", "description": "no", "img":"https://i.natgeofe.com/n/d472dd3c-8d38-4eed-ae62-7472a12a17de/secretary-bird-thumbnail-nationalgeographic_2331336_3x2.jpg","link":"https://www.youtube.com/watch?v=G-rsmbK7gdY","linkDescription":"wow see this cool video"}
-
 mediaRouter.post('/', async (request, response) => {
     const title = request.body.title
     const description = request.body.description
@@ -41,7 +39,7 @@ mediaRouter.post('/', async (request, response) => {
     }
 })
 
-//deletes media post
+//deletes media post by id
 mediaRouter.delete('/:id', async (request, response) => {
     const id = request.params.id
     const values = [id]
@@ -60,7 +58,6 @@ mediaRouter.delete('/:id', async (request, response) => {
 
 //updates media post
 // syntax: {"title": String, "description": String, "img": String,"link": String,"linkDescription": String}
-
 mediaRouter.put('/:id', async (request, response) => {
     const id = request.params.id
     const media = request.body

@@ -141,7 +141,6 @@ userRouter.get('/userIdByEmail', async (request, response) => {
 })
 
 //deletes user
-
 userRouter.delete('/:id', async (request, response) => {
     const id = request.params.id
     const values = [id]

@@ -4,7 +4,8 @@ import { dbconfig } from '../database.js'
 const adminRouter = Router()
 
 // Checks if the given username and password is in the admin table
-adminRouter.get('/', async (request, response) => {
+// it's a post cuz thats more secure I guess
+adminRouter.post('/', async (request, response) => {
     const { username, password } = request.body
 
     const sql = 'SELECT * FROM admin WHERE username = ? AND password = ?'
