@@ -41,6 +41,18 @@ eventRouter.get('/', async (request, response) => {
         response.status(500).json({ error: error.message });
     }
 });
+eventRouter.delete('/:id', async (request, response) => {
+    const id = request.params.id;
+    const values = [id];
+    const sql = 'CALL deleteEvent(?)';
+    try {
+        const [results] = await dbconfig.execute(sql, values);
+        response.status(200).json(results[0]);
+    }
+    catch (error) {
+        response.status(500).json({ error: error.message });
+    }
+});
 eventRouter.post('/', async (request, response) => {
     const title = request.body.title;
     const description = request.body.description || '';

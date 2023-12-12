@@ -62,6 +62,22 @@ eventRouter.get('/', async (request, response) => {
     }
 })
 
+//For deleting events using the id of the component
+eventRouter.delete('/:id', async (request, response) => {
+    const id = request.params.id
+    const values = [id]
+
+    const sql = 'CALL deleteEvent(?)'
+
+    try {
+        const [results]: any = await dbconfig.execute(sql, values)
+
+        response.status(200).json(results[0])
+    } catch (error: any) {
+        response.status(500).json({ error: error.message })
+    }
+})
+
 // posts an event with syntax {title: string , description?: string, start: stringDate, end: stringDate, imageUrl:string, linkUrl:string}
 // example = {title:"Cool event", description:"no", start:"2023-04-23 02:00:00", end:"2023-04-23 06:00:00", imageUrl:'some url', linkUrl:'some url'}
 

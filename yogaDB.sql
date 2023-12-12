@@ -231,3 +231,12 @@ CREATE PROCEDURE deleteUser(IN p_id INT)
 
 ALTER TABLE events
 ADD COLUMN linkUrl VARCHAR(500)
+
+CREATE PROCEDURE deleteEvent(IN eventId INT)
+BEGIN
+    -- Delete from users_events table
+    DELETE FROM users_events WHERE event_id = eventId;
+
+    -- Delete from events table
+    DELETE FROM events WHERE id = eventId;
+END;
