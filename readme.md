@@ -4,7 +4,7 @@ This repository hosts the backend for our yoga platform. You can also find a liv
 
 ## Running Locally
 
-1. Clone this repository to your local machine and open the file
+1. Clone this repository to your local machine and open the folder
 
 2. Create a new `.env` file in the root directory with the following variables:
 
