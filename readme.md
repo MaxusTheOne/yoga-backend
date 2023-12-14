@@ -29,15 +29,14 @@ This repository hosts the backend for our yoga platform. You can also find a liv
         ```
 
         The message below should display in the terminal now:
-
-        ```bash
+        "
         > yoga-backend@1.0.0 start
         > node ./dist/main.js
 
         host:yogadbserver.mysql.database.azure.com
         Hello world :)
-        app running on http://localhost:3000
-        ```
+        app running on http://localhost:300
+        "
 
 5.  Go to the frontend repository at: https://github.com/MaxusTheOne/Yoga-frontend and follow the steps on the README.md file to complete the setup.
 
