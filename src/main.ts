@@ -14,6 +14,15 @@ const port = process.env.PORT || 3000
 app.use(express.json())
 app.use(cors())
 
+// Define a route for the root path
+app.get('/', (request, response) => {
+    console.log('Received a request at the root path.', request)
+
+    response.send(
+        'Welcome to the YogaBackend! Add /events, /users, or /media to the root path to see more data.'
+    )
+})
+
 // Restfull Routing
 app.use('/events', eventRouter)
 app.use('/users', userRouter)
