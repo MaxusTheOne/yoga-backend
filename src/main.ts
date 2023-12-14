@@ -5,7 +5,6 @@ import eventRouter from './routes/events.js'
 import userRouter from './routes/users.js'
 import mediaRouter from './routes/media.js'
 import adminRouter from './routes/adminLogin.js'
-import defaultRouter from './routes/default.js'
 
 console.log('Hello world :)')
 
@@ -20,9 +19,6 @@ app.use('/events', eventRouter)
 app.use('/users', userRouter)
 app.use('/media', mediaRouter)
 app.use('/admin', adminRouter)
-
-// Default route
-app.use('*', defaultRouter)
 
 app.listen(port, () => {
     console.log(`app running on http://localhost:${port}`)
