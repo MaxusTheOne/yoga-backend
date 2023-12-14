@@ -28,6 +28,6 @@ This repository hosts the backend for our yoga platform. You can also find a liv
     npm start
     ```
 
-5. Go to the frontend at: https://github.com/MaxusTheOne/Yoga-frontend and follow the steps to complete the setup.
+5. Go to the frontend repository at: https://github.com/MaxusTheOne/Yoga-frontend and follow the steps on the README.md file to complete the setup.
 
 Congratulations! Your backend should now be up and running at [http://localhost:3000](http://localhost:3000). Feel free to explore and customize as needed!
