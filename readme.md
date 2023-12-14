@@ -1,12 +1,16 @@
 # YogaBackend
 
-This repository hosts the backend for our yoga platform. You can also find a live version [here](https://yogabackend.azurewebsites.net/events), but it's a bit basic since we're using a free hosting service.
+This repository hosts the backend for our yoga platform. You can also explore the live version [here](https://yogabackend.azurewebsites.net/events), although it's a bit basic as we're using a free hosting service.
 
 ## Running Locally
 
-1.  Clone this repository to your local machine and open the folder
+1. **Clone this repository:**
 
-2.  Create a new `.env` file in the root directory with the following variables:
+    - Clone this repository to your local machine and open the folder.
+
+2. **Create a new `.env` file:**
+
+    - In the root directory, create a new `.env` file with the following variables:
 
     ```env
     MYSQL_HOST=localhost
@@ -16,28 +20,34 @@ This repository hosts the backend for our yoga platform. You can also find a liv
     MYSQL_PORT={port}
     ```
 
-    Replace `{user}`, `{password}` and `{port}` with your local database credentials.
+    Replace `{user}`, `{password}`, and `{port}` with your local database credentials.
 
-3.  Open your IDE for databases, setup the connection and create the database by executing the `yogaDB.sql` file.
+3. **Setup the Database:**
 
-4.  Run the following commands in your terminal:
+    - Open your database IDE, set up the connection, and create the database by executing the `yogaDB.sql` file.
 
-        ```bash
-        npm install
-        tsc
-        npm start
-        ```
+4. **Run Commands in Terminal:**
 
-The message below should display in the terminal now:
-"
-yoga-backend@1.0.0 start
-node ./dist/main.js
+    - Run the following commands in your terminal:
 
-host:yogadbserver.mysql.database.azure.com
-Hello world :)
-app running on http://localhost:300
-"
+    ```bash
+    npm install
+    tsc
+    npm start
+    ```
 
-5.  Go to the frontend repository at: https://github.com/MaxusTheOne/Yoga-frontend and follow the steps on the README.md file to complete the setup.
+    You should see the following message in the terminal:
 
-Congratulations! Your backend should now be up and running at [http://localhost:3000](http://localhost:3000). Feel free to explore and customize as needed!
+    ```
+    yoga-backend@1.0.0 start
+    node ./dist/main.js
+
+    host:yogadbserver.mysql.database.azure.com
+    Hello world :)
+    app running on http://localhost:300
+    ```
+
+5. **Frontend Setup:**
+    - Go to the frontend repository at: [https://github.com/MaxusTheOne/Yoga-frontend](https://github.com/MaxusTheOne/Yoga-frontend) and follow the steps in the README.md file to complete the setup.
+
+Congratulations! Your backend is now up and running at [http://localhost:3000](http://localhost:3000). Feel free to explore and customize as needed!
