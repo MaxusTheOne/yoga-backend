@@ -44,7 +44,7 @@ This repository hosts the backend for our yoga platform. You can also explore th
 
     host:yogadbserver.mysql.database.azure.com
     Hello world :)
-    app running on http://localhost:300
+    app running on http://localhost:3000
     ```
 
 5. **Frontend Setup:**
