@@ -12,6 +12,7 @@ MYSQL_PORT=3000
 and fill in the {} with ur local db credentials
 The db can be created by running the yogaDB.sql file
 
+first run: npm install to get the necessary node module files
 then run: tsc
 after: npm start
 
@@ -40,6 +41,7 @@ This repository hosts the backend for our yoga platform. You can also find a liv
 3. Run the following commands in your terminal:
 
     ```bash
+    npm install
     tsc
     npm start
     ```
